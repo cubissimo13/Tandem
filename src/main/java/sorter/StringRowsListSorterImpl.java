@@ -1,8 +1,5 @@
 package sorter;
 
-import tokenaiser.Token;
-import tokenaiser.Tokenaiser;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,27 +11,26 @@ public class StringRowsListSorterImpl implements StringRowsListSorter {
 
         //Сортировка таблицы по укзанному столбцу
         boolean flag = true;
-        String[] swap;
+        String[] tmp;
         int length = rows.size();
         while (flag) {
             flag = false;
             for (int i = 0; i < length-1; i++) {
-                if (compareRow(rows.get(i)[columnIndex], rows.get(i + 1)[columnIndex]) < 0 ) {
-                    swap = rows.get(i);
+                if (compareRow(rows.get(i)[columnIndex], rows.get(i + 1)[columnIndex]) > 0 ) {
+                    tmp = rows.get(i);
                     rows.set(i,rows.get(i+1));
-                    rows.set(i+1,swap);
+                    rows.set(i+1,tmp);
                     flag = true;
                 }
             }
         }
 
         //Вывод отсортированной таблицы
-        //printTable(rows);
+        System.out.println("============ Cортировка по " + (columnIndex+1) + " столбцу ==============");
+        printTable(rows);
     }
 
     private int compareRow(String first, String second){
-
-        int result = 0;
 
         //Сравнение нулевых строк
         if (first == null & second!=null) {
@@ -55,16 +51,7 @@ public class StringRowsListSorterImpl implements StringRowsListSorter {
         }
 
         //Сравнение строк
-        Tokenaiser tokensOfFirstString = new Tokenaiser(first);
-        Tokenaiser tokensOfSecondString = new Tokenaiser(second);
-
-        int loops = Math.max(tokensOfFirstString.getTokens().size(), tokensOfSecondString.getTokens().size());
-        System.out.println(loops);
-
-
-
-
-        return result;
+        return first.compareTo(second);
     }
 
     private void printTable(List<String[]> rows){
