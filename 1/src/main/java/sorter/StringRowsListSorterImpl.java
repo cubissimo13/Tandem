@@ -5,6 +5,16 @@ import java.util.List;
 
 public class StringRowsListSorterImpl implements StringRowsListSorter {
 
+    private static final StringRowsListSorterImpl INSTANCE = new StringRowsListSorterImpl();
+
+    private StringRowsListSorterImpl() {
+    }
+
+    public static StringRowsListSorterImpl getInstance(){
+
+        return INSTANCE;
+    };
+
     public void sort(List<String[]> rows, int columnIndex) {
         //Вывод исходной таблицы
         printTable(rows);

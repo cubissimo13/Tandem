@@ -7,7 +7,7 @@ public class Program {
 
     public static void main(String[] args) {
 
-        StringRowsListSorter sorter = new StringRowsListSorterImpl();
+        StringRowsListSorter sorter = StringRowsListSorterImpl.getInstance();
 
         List<String[]> table = new ArrayList<>();
 
